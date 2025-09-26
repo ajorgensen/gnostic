@@ -124,11 +124,13 @@ paths:
                 - name: int64_value_type
                   in: query
                   schema:
-                    type: string
+                    type: integer
+                    format: int64
                 - name: uint64_value_type
                   in: query
                   schema:
-                    type: string
+                    type: integer
+                    format: uint64
                 - name: float_value_type
                   in: query
                   schema:
@@ -289,11 +291,13 @@ paths:
                 - name: int64_value_type
                   in: query
                   schema:
-                    type: string
+                    type: integer
+                    format: int64
                 - name: uint64_value_type
                   in: query
                   schema:
-                    type: string
+                    type: integer
+                    format: uint64
                 - name: float_value_type
                   in: query
                   schema:
