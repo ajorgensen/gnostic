@@ -160,10 +160,10 @@ func (r *OpenAPIv3Reflector) schemaOrReferenceForMessage(message protoreflect.Me
 	case ".google.protobuf.BytesValue":
 		return wk.NewBytesSchema()
 
-	case ".google.protobuf.Int32Value", ".google.protobuf.UInt32Value":
+	case ".google.protobuf.Int32Value", ".google.protobuf.UInt32Value", ".google.protobuf.Int64Value", ".google.protobuf.UInt64Value":
 		return wk.NewIntegerSchema(getValueKind(message))
 
-	case ".google.protobuf.StringValue", ".google.protobuf.Int64Value", ".google.protobuf.UInt64Value":
+	case ".google.protobuf.StringValue":
 		return wk.NewStringSchema()
 
 	case ".google.protobuf.FloatValue", ".google.protobuf.DoubleValue":
@@ -208,12 +208,10 @@ func (r *OpenAPIv3Reflector) schemaOrReferenceForField(field protoreflect.FieldD
 		kindSchema = wk.NewStringSchema()
 
 	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Uint32Kind,
-		protoreflect.Sfixed32Kind, protoreflect.Fixed32Kind:
-		kindSchema = wk.NewIntegerSchema(kind.String())
-
-	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Uint64Kind,
+		protoreflect.Sfixed32Kind, protoreflect.Fixed32Kind,
+		protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Uint64Kind,
 		protoreflect.Sfixed64Kind, protoreflect.Fixed64Kind:
-		kindSchema = wk.NewStringSchema()
+		kindSchema = wk.NewIntegerSchema(kind.String())
 
 	case protoreflect.EnumKind:
 		kindSchema = wk.NewEnumSchema(*&r.conf.EnumType, field)
